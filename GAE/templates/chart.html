@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart</title>
+    <style>
+        .chart {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart">
+        <h1>Risk Analysis Chart</h1>
+        <img src="https://image-charts.com/chart?
+cht=lc
+&chs=999x600
+&chd=t:{{ risks }}
+&chco=FF0000,0000FF,00FF00,FFA500
+&chdl=var95|var99|avg+var95|avg+var99
+&chdlp=b
+&chxt=x,y
+&chxl=0:|{{ signal_names }}
+&chxs=0,min90
+&chds=-15,20
+&chtt=Risk+Analysis+Chart">        
+    </div>
+</body>
+</html>

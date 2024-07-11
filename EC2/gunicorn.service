@@ -1,0 +1,18 @@
+[Unit]
+Description=Gunicorn daemon for the app
+After=network.target
+
+[Service]
+User=ec2-user
+Group=ec2-user
+WorkingDirectory=/home/ec2-user
+ExecStart=/home/ec2-user/.local/bin/gunicorn -b :5000 app:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+# This file was created in the EC2 instance used as an image
+# configuring gunicorn to run as a service on the instance
+# upon start up so that whenever an instance is created, 
+# the API is up and ready to perform computations.
