@@ -5,9 +5,53 @@ import http.client
 
 from costs import CostCalculator
 from concurrent.futures import ThreadPoolExecutor
+from abc import ABC, abstractmethod
 
 
-class EC2:
+class Service(ABC):
+    """
+    Abstract base class that defines a common interface for services.
+    """
+    @property
+    @abstractmethod
+    def get_warmup_cost(self) -> dict:
+        pass
+
+    @property
+    @abstractmethod
+    def get_endpoints(self) -> dict:
+        pass
+
+    @abstractmethod
+    def get_var9599(self, *args, **kwargs) -> tuple:
+        pass
+
+    @abstractmethod
+    def terminate(self) -> None:
+        pass
+
+    @abstractmethod
+    def check_scaled_ready(self) -> bool:
+        pass
+
+    @abstractmethod
+    def check_terminated(self) -> bool:
+        pass
+
+    @abstractmethod
+    def _scale(self) -> list | None:
+        pass
+
+    @abstractmethod
+    def _simulation(self, *args, **kwargs) -> tuple:
+        pass
+
+    @abstractmethod
+    def _format_callstrings(self, *args, **kwargs) -> dict:
+        pass
+
+
+class EC2(Service):
     def __init__(self, runs: int):
         """
         Constructor initialises the DNS for the Lambda intermediary function.
@@ -171,7 +215,7 @@ class EC2:
         return call_strings
 
 
-class Lambda:
+class Lambda(Service):
     def __init__(self, runs: int):
         """
         Constructor initialises the DNS for the Lambda function. When an object 
